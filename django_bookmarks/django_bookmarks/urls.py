@@ -30,4 +30,8 @@ urlpatterns = patterns('',
 	url(r'^tag/$', 'bookmarks.views.tag_cloud_page'),
 	url(r'^search/$', 'bookmarks.views.search_page'),
 	url(r'^ajax/tag/autocomplete/$', 'bookmarks.views.ajax_tag_autocomplete'),
+	url(r'^vote/$', 'bookmarks.views.bookmark_vote_page'),
+	url(r'^popular/', 'bookmarks.views.popular_page'),
+	url(r'^comments/', 'django.contrib.comments.urls.comments'),
+	url(r'^bookmark/(\d+)/$', 'bookmarks.views.bookmark_page'),
 )
