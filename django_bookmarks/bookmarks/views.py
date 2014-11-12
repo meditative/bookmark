@@ -40,6 +40,14 @@ def user_page_1(request,username):
 
 @login_required(login_url = '/login/')	
 def user_page(request, username):
+	print username
+	print request.user.username
+	if not username == request.user.username:
+		variables = RequestContext(request,{
+			'username': username,
+			'denied': True}, 
+		)
+		return render_to_response('user_page.html', variables)
 	user = get_object_or_404(User, username=username)
 	bookmarks = user.bookmark_set.order_by('-id')
 	variables = RequestContext(request,{'bookmarks':bookmarks,'username':username,
@@ -196,7 +204,7 @@ def bookmark_vote_page(request):
 
 def popular_page(request):
 	today = datetime.today()
-	yesterday = today - timedelta(1)
+	yesterday = today - timedelta(10)
 	shared_bookmarks = SharedBookmark.objects.filter(date__gt = yesterday)
 	shared_bookmarks = shared_bookmarks.order_by('-votes')[:10]
 	variables = RequestContext(request, {'shared_bookmarks': shared_bookmarks})

@@ -24,6 +24,5 @@ class="username">
 </div>
 {% endfor %}
 <p>Number of comments: {{ comment_count }}</p>
-{% include 'form.html' %}
-
+{% render_comment_form for bookmarks.sharedbookmark shared_bookmark.id %}
 {% endblock %}

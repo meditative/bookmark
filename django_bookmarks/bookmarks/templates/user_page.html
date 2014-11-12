@@ -5,15 +5,10 @@
 {% block title %}{{ username }}{% endblock %}
 {% block head %}Bookmarks for {{ username }}{% endblock %}
 {% block content %}
-<!-- {% if bookmarks %}
-<ul>
-{% for bookmark in bookmarks %}
-<li><a href="{{ bookmark.link.url }}">
-{{ bookmark.title }}</a></li>
-{% endfor %}
-</ul>
+
+{% if denied %}
+You don't have permission to see {{ username }}'s information.
 {% else %}
-<p>No bookmarks found.</p>
-{% endif %} -->
-{% include "bookmark_list.html"%}
+{% include 'bookmark_list.html' %}
+{% endif %}
 {% endblock %}
