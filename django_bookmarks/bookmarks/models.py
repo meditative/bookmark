@@ -8,7 +8,7 @@ class Link(models.Model):
 		return self.url
 
 class LinkAdmin(admin.ModelAdmin):
-	fields = ('url',)
+	list_display = ('url',)
 
 admin.site.register(Link, LinkAdmin)
 
@@ -18,9 +18,11 @@ class Bookmark(models.Model):
 	link = models.ForeignKey(Link)
 	def __str__(self):
 		return '%s, %s' % (self.user.username, self.link.url)
-class Admin(admin.ModelAdmin):
-	fields = ('title', )
-admin.site.register(Bookmark, Admin)
+class BookmarkAdmin(admin.ModelAdmin):
+	list_display = ('title', 'user', 'link')
+	ordering = ('title',)
+	search_fields = ('title',)
+admin.site.register(Bookmark, BookmarkAdmin)
 		
 	
 class Tag(models.Model):
@@ -29,8 +31,9 @@ class Tag(models.Model):
 	def __str__(self):
 		return self.name
 
-	class Admin:
-		pass
+class TagAdmin(admin.ModelAdmin):
+	list_display = ('name',)
+admin.site.register(Tag, TagAdmin)
 
 class SharedBookmark(models.Model):
 	bookmark = models.ForeignKey(Bookmark, unique = True)
@@ -41,5 +44,7 @@ class SharedBookmark(models.Model):
 	def __str__(self):
 		return '%s %s '%(self.bookmark, self.votes)
 
-	class Admin:
-		pass
+class SharedBookmarkAdmin(admin.ModelAdmin):
+	list_display = ('bookmark', 'date', 'votes', )
+	pass
+admin.site.register(SharedBookmark, SharedBookmarkAdmin)

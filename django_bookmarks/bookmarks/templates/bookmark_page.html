@@ -24,5 +24,6 @@ class="username">
 </div>
 {% endfor %}
 <p>Number of comments: {{ comment_count }}</p>
+{% csrf_token %}
 {% render_comment_form for bookmarks.sharedbookmark shared_bookmark.id %}
 {% endblock %}
