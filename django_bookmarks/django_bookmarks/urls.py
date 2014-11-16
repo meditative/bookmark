@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from django.views.generic.simple import direct_to_template
 from django.contrib import admin, comments
+from bookmarks.feeds import RecentBookmarks
+from django.contrib.comments.feeds import LatestCommentFeed
 import os
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -8,7 +10,9 @@ import os
 
 site_media = os.path.dirname(__file__)
 site_media = os.path.join(os.path.dirname(site_media), 'bookmarks','site_media')
-
+feeds = {
+	'recent': RecentBookmarks,
+}
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'django_bookmarks.views.home', name='home'),
@@ -18,7 +22,8 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url(r'^feeds/latest/$', LatestCommentFeed()),
+    url(r'^feeds/latest/$', RecentBookmarks()),
+    # url(r'^feeds/(?P<url>.*)/$', 'django.contrib.syndication.views.feed',{'feed_dict': feeds}),
     url(r'^admin/', include(admin.site.urls)),
 	url(r'^$','bookmarks.views.main_page'),
 	url(r'^user/(\w+)/$','bookmarks.views.user_page'),

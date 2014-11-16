@@ -1,5 +1,6 @@
 {% if user.is_authenticated %}
 <form action="/comments/post/" method="post">
+{% csrf_token %}
 <p><label>Post a comment:</label><br />
 <textarea name="comment" rows="10"
 cols="60"></textarea></p>

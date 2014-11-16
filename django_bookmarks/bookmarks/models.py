@@ -18,13 +18,17 @@ class Bookmark(models.Model):
 	link = models.ForeignKey(Link)
 	def __str__(self):
 		return '%s, %s' % (self.user.username, self.link.url)
+
+	def get_absolute_url(self):
+		return self.link.url
+
 class BookmarkAdmin(admin.ModelAdmin):
 	list_display = ('title', 'user', 'link')
 	ordering = ('title',)
 	search_fields = ('title',)
+
 admin.site.register(Bookmark, BookmarkAdmin)
 		
-	
 class Tag(models.Model):
 	name = models.CharField(max_length=64, unique = True)
 	bookmarks = models.ManyToManyField(Bookmark)
