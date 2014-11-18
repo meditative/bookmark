@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>Finance |
+{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="/site-media/table.css"
+type="text/css" />
+<script type="text/javascript" src="/site-media/jquery.js"></script>
+{% block external %}
+{% endblock %}
+</head>
+<body>
+
+{% if finances %}
+<div >
+	{% for finance in finances %}
+	<div class="row" id="{{ finance.id }}">
+		<div class="col">
+			{{ finance.no }}
+		</div>
+		<div class="col">
+			{{ finance.date }}
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endif %}
+
+</body>
+</html>
+

@@ -1,0 +1,25 @@
+<html>
+<head>
+<title>Run CI Page</title>
+</head>
+<body>
+
+<form action="run/" method="post">
+{% csrf_token %}
+<table>
+{{ form.as_table }}
+</table>
+<input type="submit" value="Submit">
+</form>
+
+<!--  <form action="/run_ci/" method="get">
+<input type="text" name="start_type">
+<input type="text" name="group_id">
+<input type="text" name="priority">
+<input type="text" name="depth">
+<input type="submit" value="Run">
+-->
+
+</form>
+</body>
+</html>

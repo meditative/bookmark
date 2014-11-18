@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Dallas Continuous Integration TestReport</title>
+<script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var pass = "pass";
+	$(".table-row:first") .css("background-color","#6FB7B7");
+	$(".row:odd") .css("background-color","#B2E0FF");
+	$(".col_state").each(function(){
+		if($.trim($(this).text()) == pass)
+		{
+			$(this).css("background-color","#76EEC6");
+		}else
+		{
+			if($.trim($(this).text()) == "fail"){
+			$(this).css("background-color","#ff7575");}
+			else{
+			}
+		}
+	})
+	$(".col").each(function(){
+		if($.trim($(this).text()) == "fail")
+		{
+			$(this).css("background-color","#ff7575");
+		}
+	})
+	$(".toggle_container").hide();
+	$(".expand_heading").toggle(function(){
+		$(this).addClass("active"); 
+		}, function () {
+		$(this).removeClass("active");
+	});
+	$(".expand_heading").click(function(){
+		$(this).parent().parent().next(".toggle_container").slideToggle("fast");
+	});
+	$(".expand_all").toggle(function(){
+		$(this).addClass("expanded"); 
+		}, function () {
+		$(this).removeClass("expanded");
+	});
+	$(".expand_all").click(function(){
+		$(".toggle_container").slideToggle("slow");
+	});
+});
+</script>
+<style type="text/css">
+
+
+html {
+	overflow-Y: scroll;
+}
+*{
+outline:none;
+}
+body {
+	font: 10px normal Georgia,Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	line-height: 1.7em;
+
+}
+
+.expand_heading {
+	padding: 0 0 0 20px;
+	margin: 0 0 0 0;
+	width:40%;
+}
+
+.expand_heading a {
+	text-decoration: none;
+	display: block;
+}
+.expand_heading a:hover {
+	color: #ccc;
+}
+
+.active {background-position: left bottom;}
+.toggle_container {
+	margin: 0 0 5px 0;
+	padding: 0;
+
+	background: #ffffff;
+
+	font-size: 1.2em;
+
+	clear: both;
+}
+
+.container{
+	
+    width:100%;
+    border-collapse: collapse;
+	margin: 0 auto;
+	padding: 0 0 0 20px;
+    }
+.inner_container{
+	align:center;
+    width:100%;
+    border-collapse: collapse;
+	margin: 0 auto;
+    }
+ .heading{
+     font-weight: bold;
+     text-align: center;
+     line-height: 25px;
+     font-size: 14px;
+     font-family:georgia;
+	 padding-right:5px;
+     padding-left:5px;
+ }
+ .pagination{
+ 	padding: 0 0 0 20px;
+ }
+ .row{  
+     display:table-row;
+     text-align: left;
+	 border-top:1px dashed;
+	 border-right:1px dashed;
+	 border-left:1px dashed;
+	 border-bottom:1px dashed;
+ }
+  .table-row{  
+     display:table-row;
+     text-align: left;
+	 border-top:1px dashed;
+	 border-right:1px dashed;
+	 border-left:1px dashed;
+	 border-bottom:1px dashed;
+ }
+ .col{ 
+	display:table-cell;
+	text-align: center;
+	border-right:1px dashed;
+	border-top:1px dashed;
+	border-left:1px dashed;
+	border-bottom:1px dashed;
+            padding-top:8px;
+            padding-bottom:8px;
+            padding-right:8px;
+            padding-left:8px;
+ }
+  .counter_col{ 
+	display:table-cell;
+	text-align: left;
+	border-right:1px dashed;
+	border-top:1px dashed;
+	border-left:1px dashed;
+	border-bottom:1px dashed;
+            padding-top:4px;
+            padding-bottom:4px;
+            padding-right:4px;
+            padding-left:4px;
+ }
+  .col_msid{ 
+	display:table-cell;
+	text-align: center;
+	border-right:1px solid;
+	border-top:1px solid;
+	border-left:1px solid;
+	border-bottom:1px solid;
+            padding-top:8px;
+            padding-bottom:8px;
+            padding-right:8px;
+            padding-left:8px;
+	width:40px;
+ }
+   .col_cases{ 
+	display:table-cell;
+	text-align: center;
+	border-top:1px solid;
+	border-right:1px solid;
+	border-bottom:1px solid;
+            padding-top:8px;
+            padding-bottom:8px;
+            padding-right:8px;
+            padding-left:8px;
+	width:400px;
+ }
+   .col_start_type{ 
+	display:table-cell;
+	text-align: center;
+	border-right:1px solid;
+	border-top:1px solid;
+	border-bottom:1px solid;
+            padding-top:8px;
+            padding-bottom:8px;
+            padding-right:8px;
+            padding-left:8px;
+	width:80px;
+ }
+   .col_time{ 
+	display:table-cell;
+	text-align: center;
+	border-right:1px solid;
+	border-top:1px solid;
+	border-bottom:1px solid;
+            padding-top:8px;
+            padding-bottom:8px;
+            padding-right:8px;
+            padding-left:8px;
+	width:150px;
+ }
+   .col_state{ 
+	display:table-cell;
+	text-align: center;
+	border-right:1px solid;
+	border-top:1px solid;
+	border-bottom:1px solid;
+            padding-top:8px;
+            padding-bottom:8px;
+            padding-right:8px;
+            padding-left:8px;
+	width:60px;
+ }
+</style>
+
+</head>
+<body>
+<h1 style="padding: 0 0 0 20px;">Continuous Integration TestReport</h1>
+<br>
+<h3 style="padding: 0 0 0 20px;">Dallas Version: {{ ci_record.DallasVersion }}&nbsp;&nbsp;&nbsp;&nbsp;
+{% ifequal fail 0 %}
+	total:{{success}}
+{% else %}
+{% ifequal success 0 %}
+	<font color=red>Fail:{{fail}}</font>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+{% else %}
+	<a href='{{ fail_url }}'><font color=red>Fail:{{fail}}</font></a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	Pass:{{success}}
+{% endifequal %}
+{% endifequal %}
+ </h3>
+<h3 style="padding: 0 0 0 20px;">Dallas Build Path:&nbsp;{{ ci_record.BuildPath }} </h3>
+	<div class="container">
+					<div class="table-row">
+					  <div class="col_msid" >Sim No</div>
+                      <div class="col_msid" >Ms ID</div>
+                      <div class="col_cases" >Cases</div>
+                      <div class="col_start_type" >Start Type</div>
+                      <div class="col_time" >Time</div>
+                      <div class="col_state" >State</div>
+                    </div>
+	{% for item in testcaselist_report %}
+	<div class="row">
+					  <div class="col_msid" >{{ item.Sim_NO}}</div>
+                      <div class="col_msid" >{{ item.MS_ID}}</div>
+                      <div class="col_cases" >{{ item.Cases}}</div>
+                      <div class="col_start_type" ><a href='{{ start_type_url }}{{ item.StartType }}/'>{{ item.StartType}}</a></div>
+                      <div class="col_time" >{{ item.Time}}</div>
+                      <div class="col_state" ><div  class="expand_heading" ><a href="#" style="cursor:hand">{{ item.State}}</a></div>
+    </div>
+    </div>
+    		<div class="toggle_container" >
+    		{{ item.detail|safe }}
+	{% endfor %}
+			</div>
+</div>  
+<div class="pagination">  
+    <span class="step-links">  
+        {% if testcaselist_report.has_previous %}  
+            <a href="?page={{ testcaselist_report.previous_page_number }}" mce_href="?page={{ testcaselist_report.previous_page_number }}">previous</a>  
+        {% endif %}  
+  
+        <span class="current">  
+            Page {{ testcaselist_report.number }} of {{ testcaselist_report.paginator.num_pages }}.  
+        </span>  
+  
+        {% if testcaselist_report.has_next %}  
+            <a href="?page={{ testcaselist_report.next_page_number }}" mce_href="?page={{ testcaselist_report.next_page_number }}">next</a>  
+        {% endif %}  
+    </span>  
+</div>
+<!-- 
+<table>
+        <tr>
+            {% if posts.has_previous %}
+            <td><a href="?page={{ posts.previous_page_number }}">上一页 </a></td>
+            {% endif %}
+            {% if posts.has_next %}
+            <td><a href="?page={{ posts.next_page_number }}">下一页</a></td>
+            {% endif %}
+            <td> 第 {{ posts.number }} 页,共 {{ posts.paginator.num_pages }} 页 </td>
+            <form action="." method="get">
+            <td>到第</td>
+            <td><input name="page" type="text" ></td>
+            <td> 页 </td>
+            <td><input type="submit" value=" 跳转 "></td>
+            </form>
+        </tr>
+</table>
+ -->
+</body>
+</html>
