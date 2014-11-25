@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/site-media/table.css"
 type="text/css" />
 <script type="text/javascript" src="/site-media/jquery.js"></script>
+<script type="text/javascript" src="/site-media/finance_edit.js"></script>
 {% block external %}
 {% endblock %}
 </head>
@@ -16,11 +17,85 @@ type="text/css" />
 <div >
 	{% for finance in finances %}
 	<div class="row" id="{{ finance.id }}">
+		<div class="col_edit">
+			<a href="" class="edit">E</a>
+			<a href="" class="save">S</a>
+			<a href="" class="cancle">C</a>
+		</div>
 		<div class="col">
 			{{ finance.no }}
 		</div>
 		<div class="col">
 			{{ finance.date }}
+		</div>
+		<div class="col">
+			{{ finance.payment }}
+		</div>
+		<div class="col">
+			{{ finance.type }}
+		</div>
+		<div class="col">
+			{{ finance.category }}
+		</div>
+		<div class="col">
+			{{ finance.card_no }}
+		</div>
+		<div class="col">
+			{{ finance.fee }}
+		</div>
+		<div class="col">
+			{{ finance.balance }}
+		</div>
+		<div class="col">
+			{{ finance.project }}
+		</div>
+		<div class="col">
+			{{ finance.sponsor }}
+		</div>
+		<div class="col">
+			{{ finance.financial_managers }}
+		</div>
+		<div class="col">
+			{{ finance.description }}
+		</div>
+		<div class="col">
+			{{ finance.name }}
+		</div>
+		<div class="col">
+			{{ finance.detail }}
+		</div>
+		<div class="col">
+			{{ finance.model_no }}
+		</div>
+		<div class="col">
+			{{ finance.number }}
+		</div>
+		<div class="col">
+			{{ finance.price }}
+		</div>
+		<div class="col">
+			{{ finance.total }}
+		</div>
+		<div class="col">
+			{{ finance.supplier }}
+		</div>
+		<div class="col">
+			{{ finance.receipt }}
+		</div>
+		<div class="col">
+			{{ finance.receipt_photo }}
+		</div>
+		<div class="col">
+			{{ finance.reimbursement }}
+		</div>
+		<div class="col">
+			{{ finance.bank_serial_number }}
+		</div>
+		<div class="col">
+			{{ finance.signature }}
+		</div>
+		<div class="col">
+			{{ finance.memo }}
 		</div>
 	</div>
 	{% endfor %}

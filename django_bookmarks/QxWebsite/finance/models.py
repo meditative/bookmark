@@ -27,4 +27,14 @@ class Finance(models.Model):
     bank_serial_number  = models.CharField(max_length = 12)
     signature = models.CharField(max_length = 12)
     memo = models.CharField(max_length = 12)
+
+    attrs = ['id', 'no', 'date', 'payment', 'type', 'category', 'card_no', 'fee',\
+                'balance', 'project', 'sponsor', 'financial_managers', 'description', \
+                'name', 'detail', 'model_no', 'number', 'price', 'total', 'supplier', \
+                'receipt', 'receipt_photo', 'reimbursement', 'bank_serial_number', 'signature', 'memo']
     
+    def __str__(self):
+        attrs_value = []
+        for attr in self.attrs:
+            attrs_value.append(str(self.__getattribute__(attr)))
+        return ', '.join(attrs_value)
